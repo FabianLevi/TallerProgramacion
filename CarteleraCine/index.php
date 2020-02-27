@@ -13,6 +13,7 @@ and open the template in the editor.
         holaaaaaaaaaaaaaaaaaa
         dosssssssssssssssss
         skere
+        helloooo
         <?php
         // put your code here
         ?>
