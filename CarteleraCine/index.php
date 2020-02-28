@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        holaaaaaaaaaaaaaaaaaa
-        dosssssssssssssssss
-        skere
-        helloooo
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+
+<?php
+//Incluyo la clase de Smarty
+require_once("smarty/libs/Smarty.class.php");
+
+//Creo un objeto template
+$miSmarty = new Smarty();
+
+//Despliego el template
+$miSmarty->display("index.tpl");
+
+?>
