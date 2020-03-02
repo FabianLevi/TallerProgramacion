@@ -39,6 +39,18 @@ body{
 .tabla{
     width: 100%;
 }
+
+#genero{
+    color: white;
+    font-size: 20px;
+}
+
+.tablaaaaa{
+    width: 10px;
+    
+}
+
+
 .tabla1{
     width: 75%;
     display: block;
@@ -54,9 +66,11 @@ body{
 }
 .td{
     width: 40%;
+    
 }
 .td1{
     width: 15%;
+
 }
 .tabla2{
     display: flex;
@@ -263,4 +277,8 @@ p{
 #err_btnAgregarCom{
     font-family: "Arial";
     font-size: 13px;
+}
+.boton1{
+    margin-left: 70%;
+    
 }
