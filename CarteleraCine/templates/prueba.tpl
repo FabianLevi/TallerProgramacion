@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-    <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
-  <script src="js/funcion.js" type="text/javascript"></script>
+  <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
+  <script src="js/funciones.js" type="text/javascript"></script>
 
   <title>Shop Homepage - Start Bootstrap Template</title>
 
@@ -32,7 +32,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" onclick="verPrincipal()" href="#">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -52,13 +52,14 @@
 
   <!-- Page Content -->
    <div class="inicio">
+       <br><br>
                 <form method="POST" action="#" id="formularioinicio">
                     <div class="tabla2"><table>
                         <tr>
                             <td><div class="form">Correo</div><br><br></td> <td><input type="text" id="txtCorreo" name="txtCorreo" class="rellenar" placeholder="Ingrese su correo"/><span id="err_txtCorreo"></span><br><br></td>
                         </tr>
                         <tr>
-                            <td><div class="form">Contraseña   </div><br><br></td> <td><input type="password" id="txtContra" class="rellenar" placeholder="Ingrese su contraseña"/><span id="err_txtContra"></span><br><br></td>
+                            <td><div class="form">Contraseña</div><br><br></td> <td><input type="password" id="txtContra" class="rellenar" placeholder="Ingrese su contraseña"/><span id="err_txtContra"></span><br><br></td>
                             
                         </tr>
                         <tr>
@@ -66,7 +67,7 @@
                     </tr>
                         </table></div>
                 </form>
-            </div>
+    </div>
       
   <div class="container2">
       
@@ -235,8 +236,8 @@
   <!-- /.container -->
 
   <!-- Footer -->
+  <div class="container3">
   <footer class="py-5 bg-dark">
-    <div class="container3">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
     </div>
     <!-- /.container -->

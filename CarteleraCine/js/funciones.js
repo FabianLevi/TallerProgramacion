@@ -3,7 +3,9 @@ $(document).ready(inicializo);
 var pagina = 1;
 
 function inicializo(){
-	mostrar("principal");
+	mostrar("container");
+        mostrar ("container2");
+        mostrar("container3");
 	ocultar("inicio");
 	ocultar("registro");
         $("#txtAliasReg").blur(validoNoVacio);
@@ -85,25 +87,28 @@ function ocultar(clase){
 		x[i].style.display="none";
 	}
 }
+
 function verPrincipal(){
-	mostrar("principal");
+	mostrar("container");
 	ocultar("inicio");
 	ocultar("registro");
-        ocultar("registroPeli");
+        mostrar("container3")
+        mostrar("container2")
 }
 function verInicio(){
-	ocultar("principal");
+	mostrar("container");
 	mostrar("inicio");
 	ocultar("registro");
-        ocultar("registroPeli");
         ocultar("container3")
         ocultar("container2")
 }
 function verRegistro(){
-	ocultar("principal");
+	mostrar("container");
 	ocultar("inicio");
+        mostrar("container3");
+        ocultar("container2");
 	mostrar("registro");
-        ocultar("registroPeli");
+
 }
 
 function validoComentario(){
@@ -252,6 +257,7 @@ function esVacio(cadena){
     }
     return retorno;
 }
+
 
 
 

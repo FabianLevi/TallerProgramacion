@@ -3,27 +3,12 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
         <script src="js/funcion.js" type="text/javascript"></script>
     </head>
     <body>
-        <div id="titulo">
-            <table class="tabla">
-            <tr>
-                <td><a onclick="verPrincipal()" href="#principal"><h2>MovieWEB</h2></a></td>
-                <td class="td"><div id="imagen"><img src="imagenes/buscar.png" width="50" alt="buscar"/></div></td>
-                <td><h4>GÉNEROS</h4></td>
-                <td><select id="selGenero" name="selGenero">
-                <option value="rom"> Romance </option>
-                <option value="dram"> Drama </option>
-                <option value="com" selected="selected"> Comedia </option>
-            </select></td>
-            <td><a onclick="verInicio()" href="#inicio"><h4>INICIAR SESIÓN</h4></a></td>
-            <td><a onclick="verRegistro()" href="#registro"><h4>REGISTRARSE</h4></a></td>
-              </tr>
-               </table>
-        </div>
+        {include file = "menu.tpl"}
         <br><br>
             <div class="principal">
                 <div class="tabla1"><table>
@@ -82,42 +67,5 @@
                 </tr>
                     </table></div>
             </div>
-            <br><br>
-            <div class="inicio">
-                <form method="POST" action="#" id="formularioinicio">
-                    <div class="tabla2"><table>
-                        <tr>
-                            <td><div class="form">Correo</div><br><br></td> <td><input type="text" id="txtCorreo" name="txtCorreo" class="rellenar" placeholder="Ingrese su correo"/><span id="err_txtCorreo"></span><br><br></td>
-                        </tr>
-                        <tr>
-                            <td><div class="form">Contraseña</div><br><br></td> <td><input type="password" id="txtContra" class="rellenar" placeholder="Ingrese su contraseña"/><span id="err_txtContra"></span><br><br></td>
-                            
-                        </tr>
-                        <tr>
-                            <td colspan="2"> <div class="td2"><input class= "boton" type="button" value="Iniciar Sesión" id="btnInicio"><span id="err_btnInicio"></span></div></td>
-                    </tr>
-                        </table></div>
-                </form>
-            </div>
-             <div class="registro">
-                <form method="POST" action="#" id="formularioregistro">
-                    <table class="tabla2">
-                        <tr>
-                            <td><div class="form">Alias</div><br><br></td> <td><input type="text" id="txtAliasReg" name="txtAlias" class="rellenar" placeholder="Ingrese su alias"/><span id="err_txtAliasReg"></span><br><br></td>
-                        </tr>
-                        <tr>
-                            <td><div class="form">Correo</div><br><br></td> <td><input type="text" id="txtCorreoReg" name="txtCorreo" class="rellenar" placeholder="Ingrese su correo"/><span id="err_txtCorreoReg"></span><br><br></td>
-                        </tr>
-                        <tr>
-                            <td><div class="form">Contraseña</div><br><br></td> <td><input type="password" id="txtContraReg" class="rellenar" placeholder="Ingrese su contraseña"/><span id="err_txtContraReg"></span><br><br></td>
-                            
-                        </tr>
-                        <tr>
-                            <td colspan="2"><div class="td2"><input class= "boton" type="button" value="Registrarse" id="btnRegistro"><span id="err_btnRegistro"></span></div></td>
-                    </tr>
-                    </table>
-                </form>
-            </div>
-            
     </body>
 </html>

@@ -6,7 +6,6 @@
 body {
   padding-top: 56px;
 }
-
 .tabla2{
      margin-top:10px;
      margin-left:650px;
@@ -22,4 +21,153 @@ body {
 #btnSiguiente{
      justify-content: center;
      align-items: center;
+}
+.boton{
+    color: white;
+    font-family: "Arial";
+    font-size: 17px;
+    font-weight: bold;
+    background-color: #2EC8C1;
+    border: 2px solid #2EC8C1;
+    width:150px;
+    height:80px;
+    box-shadow: 3px 7px 15px 1px rgba(0,0,0,0.64);
+}
+.form{
+    background-color: #EBF2F2;
+    width: 120px;
+    height: 63px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Arial";
+    font-size: 13px;
+    color: #595B5B;
+}
+.rellenar{
+    background-color: white;
+    border-top-color: #2BB5F5;
+    width: 350px;
+    height: 60px;
+    text-align: center;
+    font-family: "Arial";
+    font-size: 13px;
+    margin: -17px 0 0 -4px;
+}
+.error{
+    border-top-color: red;
+}
+
+.ok{
+     border-top-color: #2BB5F5;
+}
+
+#err_txtContra{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtCorreo{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtAliasReg{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtContraReg{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtCorreoReg{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtTítulo{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtGénero{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtFecha{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtResumen{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtDirector{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtElenco{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_imgPoster{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtAlias{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtPuntuacion{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_txtComentario{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_btnInicio{
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_btnRegistro{
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_btnAgregar{
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_btnAgregarCom{
+    font-family: "Arial";
+    font-size: 13px;
 }

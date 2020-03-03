@@ -35,7 +35,7 @@ if($conn->conectar()){
         $miSmarty->assign("datos", $reves);
         
     }
-    $miSmarty->display("index_1.tpl");
+    $miSmarty->display("prueba.tpl");
 
     
 }
@@ -45,6 +45,7 @@ else{
 
 
 //$miSmarty->display("prueba.tpl");
+
 
 
 ?>
