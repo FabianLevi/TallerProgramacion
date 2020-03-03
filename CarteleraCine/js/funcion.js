@@ -1,4 +1,7 @@
 $(document).ready(inicializo);
+
+var pagina = 1;
+
 function inicializo(){
 	mostrar("principal");
 	ocultar("inicio");
@@ -22,6 +25,51 @@ function inicializo(){
         $("#txtPuntuacion").blur(validoPuntuacion);
         $("#btnAgregar").click(validoPelicula);
         $("#btnAgregarCom").click(validoComentario);
+        $("#btnAnterior").click(paginaAnterior);
+        $("#btnSiguiente").click(paginaSiguiente);
+}
+
+function paginaAnterior(){
+    pagina--;
+    cargoPagina(pagina);
+}
+
+function paginaSiguiente(){
+    pagina++;
+    cargoPagina(pagina);
+}
+
+function cargoPagina(numeroPag){
+    $.ajax({
+       url : "traigoPagina.php",
+       type : "POST",
+       data : "pagina=" + numeroPag,
+       dataType : "JSON",
+       success : procesoResultado,
+       error : procesoError
+    });
+}
+
+function procesoError(){
+    alert("Error de comunicación");
+}
+
+function procesoResultado(datos){
+    let filas, fila, tmp;
+    if(datos["status"]=="OK"){
+        filas = datos["data"];
+        $("#cuerpoTabla").empty();
+        for(pos=0; pos <= filas.length-1; pos++){
+            fila = filas[pos];
+            tmp = "<tr><td>" + fila["titulo"] + "</td>";
+            tmp = tmp + "<td>" + fila["fecha_lanzamiento"] + "</td></tr>";
+            $("#cuerpoTabla").append(tmp)
+        }
+    }
+    else{
+        alert("ERROR!!!");
+    }
+    
 }
 function mostrar(clase){
 	var x = document.getElementsByClassName(clase);
@@ -48,6 +96,8 @@ function verInicio(){
 	mostrar("inicio");
 	ocultar("registro");
         ocultar("registroPeli");
+        ocultar("container3")
+        ocultar("container2")
 }
 function verRegistro(){
 	ocultar("principal");
@@ -202,5 +252,8 @@ function esVacio(cadena){
     }
     return retorno;
 }
+
+
+
 
 
