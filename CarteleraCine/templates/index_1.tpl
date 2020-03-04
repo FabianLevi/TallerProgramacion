@@ -20,7 +20,6 @@ and open the template in the editor.
                 </tr>
             </thead>
             <tbody id="cuerpoTabla">
-               
                 {foreach from=$datos item=fila}
                     <tr>
                         <td>{$fila["titulo"]}</td>

@@ -1,5 +1,6 @@
 $(document).ready(inicializo);
 
+
 var pagina = 1;
 
 function inicializo(){
@@ -29,6 +30,7 @@ function inicializo(){
         $("#btnAgregarCom").click(validoComentario);
         $("#btnAnterior").click(paginaAnterior);
         $("#btnSiguiente").click(paginaSiguiente);
+        cargoPagina(1);
 }
 
 function paginaAnterior(){
@@ -57,15 +59,28 @@ function procesoError(){
 }
 
 function procesoResultado(datos){
+    //alert(JSON.stringify(datos));
+    
     let filas, fila, tmp;
     if(datos["status"]=="OK"){
         filas = datos["data"];
-        $("#cuerpoTabla").empty();
+        $("#ajax").empty();
         for(pos=0; pos <= filas.length-1; pos++){
             fila = filas[pos];
-            tmp = "<tr><td>" + fila["titulo"] + "</td>";
-            tmp = tmp + "<td>" + fila["fecha_lanzamiento"] + "</td></tr>";
-            $("#cuerpoTabla").append(tmp)
+            tmp= "<div class=" +"" + "col-lg-4 col-md-6 mb-4"+ ">" + "<div class=card h-100>" + "<a href=#>";
+            tmp = tmp + "<img class=\"card-img-top\" src=\""+ fila["fotos"] + "\" alt=></a>";
+            tmp = tmp +  "<div class=" + "" + "card-body" +">" + "<h4 class=" + "" + "card-title>";  
+            tmp = tmp + "<a href=" +"" + "#" +">" + fila["titulo"] + "</a>" + "</h4>";
+            tmp = tmp + "<h5>" + fila["fecha_lanzamiento"] + "</h5>";
+            tmp = tmp + "<p class=" +"" + "card-text" + ">" + fila["resumen"] + "</p>" + "</div>";
+            tmp = tmp + "<div class=" + "" + "card-footer" + ">";
+            tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9733; &#9734;</small>" + "</div></div></div>";
+            $("#ajax").append(tmp)
+//            tmp = "<tr><td>" + fila["titulo"] + "</td>";
+//            tmp = tmp + "<td>" + fila["fecha_lanzamiento"] + "</td></tr>";
+//            $("#cuerpoTabla").append(tmp)
+              
+            
         }
     }
     else{

@@ -10,7 +10,7 @@ if($pagina == 0){
 $conn = new ConexionBD(MOTOR, SERVIDOR, BASE, USUARIO, CLAVE);
 
 if($conn->conectar()){
-    $sql = "SELECT * FROM peliculas";
+    $sql = "SELECT * FROM peliculas ORDER BY fecha_lanzamiento desc";
     $sql .= " LIMIT :inicio,6";
     
     $parametros = array();

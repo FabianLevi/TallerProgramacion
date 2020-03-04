@@ -24,15 +24,15 @@ $miSmarty->cache_dir =CACHE_DIR;
 
 if($conn->conectar()){
     $sql = "SELECT * FROM peliculas";
-    $sql .=" ORDER BY fecha_lanzamiento";
+    $sql .=" ORDER BY fecha_lanzamiento desc";
     $sql .= " LIMIT 0,6";
     //$sql .= " WHERE help_category_id >= :codigo";
     
     
     if($conn->consulta($sql)){
         $listado = $conn->restantesRegistros();
-        $reves = array_reverse($listado);
-        $miSmarty->assign("datos", $reves);
+       
+        $miSmarty->assign("datos", $listado);
         
     }
     $miSmarty->display("prueba.tpl");
