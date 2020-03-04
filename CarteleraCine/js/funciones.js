@@ -3,11 +3,11 @@ $(document).ready(inicializo);
 var pagina = 1;
 
 function inicializo(){
-	mostrar("container");
-        mostrar ("container2");
-        mostrar("container3");
-	ocultar("inicio");
-	ocultar("registro");
+	//mostrar("container");
+        //mostrar ("container2");
+        //mostrar("container3");
+	//ocultar("inicio");
+	//ocultar("registro");
         $("#txtAliasReg").blur(validoNoVacio);
         $("#txtCorreoReg").blur(validoCorreo);
         $("#txtContraReg").blur(validoContra);
@@ -73,7 +73,7 @@ function procesoResultado(datos){
     }
     
 }
-function mostrar(clase){
+/*function mostrar(clase){
 	var x = document.getElementsByClassName(clase);
 	var i;
 	for (i=0; i<x.length; i++){
@@ -105,11 +105,11 @@ function verInicio(){
 function verRegistro(){
 	mostrar("container");
 	ocultar("inicio");
-        mostrar("container3");
+        ocultar("container3");
         ocultar("container2");
 	mostrar("registro");
 
-}
+}*/
 
 function validoComentario(){
     let alias = $("#txtAlias").val();
