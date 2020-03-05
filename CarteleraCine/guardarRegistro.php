@@ -4,7 +4,6 @@ require_once("conexionBD/class.Conexion.BD.php");
 require_once("tmp/configs/configuracion.php");
 
 
-
 define('TEMPLATE_DIR', $_SERVER['DOCUMENT_ROOT'].'./CarteleraCine/templates/');
 define('COMPILER_DIR', $_SERVER['DOCUMENT_ROOT'].'./CarteleraCine/tmp/templates_c/');
 define('CONFIG_DIR', $_SERVER['DOCUMENT_ROOT'].'./CarteleraCine/tmp/config/');
@@ -16,8 +15,9 @@ guardarUsuario($_POST["txtAlias"], $_POST["txtCorreoReg"], $_POST["txtContraReg"
 
 function guardarUsuario($alias, $correo, $contra) {
     if(!existeCorreo($correo)){
-    $cn = abrirConexion();
-    $cn->consulta('INSERT INTO usuarios(alias, email, password) '
+    $conn = new ConexionBD(MOTOR, SERVIDOR, BASE, USUARIO, CLAVE);
+    $conn->conectar();
+    $conn->consulta('INSERT INTO usuarios(alias, email, password) '
             . 'VALUES (:alias, :correo, md5(:contra))', array(
         array("alias", $alias, 'string'),
         array("correo", $correo, 'string'),
@@ -30,20 +30,19 @@ function guardarUsuario($alias, $correo, $contra) {
     }
 }
 
-function abrirConexion() {
-    $cn = new ConexionBD("mysql", "localhost", "Base", "root", "root");
-    $cn->conectar();
-    return $cn;
-}
-
-
 function existeCorreo($correo) {
-    $cn = abrirConexion();
-    $cn->consulta('SELECT email FROM usuarios WHERE email=:correo', array(
+    $conn = new ConexionBD(MOTOR, SERVIDOR, BASE, USUARIO, CLAVE);
+     if ($conn->conectar()) {
+        $sql = "SELECT email FROM usuarios";
+        $sql .= " WHERE email=:correo";
+        $conn->consulta($sql,array(
         array("correo", $correo, 'string')
     ));
-    return $cn->cantidadRegistros() > 0;
+        return $conn->cantidadRegistros() > 0;
+     }
 }
+        
+   
 
 
 ?>

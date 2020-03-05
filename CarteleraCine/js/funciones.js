@@ -97,7 +97,7 @@ function procesoResultado(datos){
             tmp= "<div class=\"col-lg-4 col-md-6 mb-4\">" + "\<div class=\"card h-100\">" + "<a href=#>";
             tmp = tmp + "<img style=\"width:355px; height:170px;\" class=\"card-img-top\" src=\""+ fila["fotos"] + "\" alt=></a>";
             tmp = tmp +  "<div class=" + "" + "card-body" +">" + "<h4 class=" + "" + "card-title>";  
-            tmp = tmp + "<a href=" +"" + "#" +">" + fila["titulo"] + "</a>" + "</h4>";
+            tmp = tmp + "<a href=" +"" + "poster.php" +">" + fila["titulo"] + "</a>" + "</h4>";
             tmp = tmp + "<h5>" + fila["fecha_lanzamiento"] + "</h5>";
             tmp = tmp + "<p class=" +"" + "card-text" + ">" + fila["nombre"] + "</p>" + "</div>";
             tmp = tmp + "<div class=" + "" + "card-footer" + ">";

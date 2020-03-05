@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once('smarty/libs/Smarty.class.php');
 require_once("conexionBD/class.Conexion.BD.php");
@@ -37,6 +38,7 @@ if($conn->conectar()){
         $miSmarty->assign("datos", $listado);
         
     }
+    $miSmarty->assign("admin", $_SESSION["usuarioLogueado"]["es_administrador"]);
     $miSmarty->display("prueba.tpl");
 
     

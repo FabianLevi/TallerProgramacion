@@ -23,7 +23,7 @@
 <body>
     {include file="encabezado.tpl"}
 
-  <div class="container2">
+
       
 
     <div class="row">
@@ -32,9 +32,12 @@
 
         <h1 class="my-4">MOVIES PRO</h1>
         <div class="list-group">
-          <a href="#" class="list-group-item">Agregar Pelicula</a>
+           r:{$admin}:r
+          {if $admin eq "1"}
+          <a href="agregarPeli.php" class="list-group-item">Agregar Pelicula</a>
           <a href="#" class="list-group-item">Aprobar Comentarios</a>
           <br><br>
+           {/if} 
             <input type="text" id="nombre" name="nombre"/>
             <input type="button" value="BUSCAR" id="buscar">
             <br>
@@ -92,7 +95,7 @@
               <a href="#"><img class="card-img-top" src="{$datos[0]["fotos"]}" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">{$datos[0]["titulo"]}</a>
+                  <a href="poster.php">{$datos[0]["titulo"]}</a>
                 </h4>
                 <h5>$24.99</h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
