@@ -30,6 +30,8 @@ function inicializo(){
         $("#btnAgregarCom").click(validoComentario);
         $("#btnAnterior").click(paginaAnterior);
         $("#btnSiguiente").click(paginaSiguiente);
+        $("#buscar").click(cargoPagina2);
+        $("#buscarGenero").click(cargoPagina3);
         cargoPagina(1);
 }
 
@@ -38,7 +40,34 @@ function paginaAnterior(){
     cargoPagina(pagina);
 }
 
+function cargoPagina3(){
+    let genero = $("#selGenero").val();
+    $.ajax({
+       url : "procesoGenero.php",
+       type : "POST",
+       data : "genero=" +genero,
+       dataType : "JSON",
+       success : procesoResultado,
+       
+    });
+}
+
+
+
+function cargoPagina2(){
+    let nombre = $("#nombre").val();
+    $.ajax({
+       url : "procesoBuscar.php",
+       type : "POST",
+       data : "nombre=" +nombre,
+       dataType : "JSON",
+       success : procesoResultado,
+       
+    });
+}
+
 function paginaSiguiente(){
+    //alert("entree");
     pagina++;
     cargoPagina(pagina);
 }
@@ -50,42 +79,57 @@ function cargoPagina(numeroPag){
        data : "pagina=" + numeroPag,
        dataType : "JSON",
        success : procesoResultado,
-       error : procesoError
+       
     });
 }
 
-function procesoError(){
-    alert("Error de comunicación");
-}
+
 
 function procesoResultado(datos){
     //alert(JSON.stringify(datos));
-    
+    //alert("volvi");
     let filas, fila, tmp;
     if(datos["status"]=="OK"){
         filas = datos["data"];
         $("#ajax").empty();
         for(pos=0; pos <= filas.length-1; pos++){
             fila = filas[pos];
-            tmp= "<div class=" +"" + "col-lg-4 col-md-6 mb-4"+ ">" + "<div class=card h-100>" + "<a href=#>";
-            tmp = tmp + "<img class=\"card-img-top\" src=\""+ fila["fotos"] + "\" alt=></a>";
+            tmp= "<div class=\"col-lg-4 col-md-6 mb-4\">" + "\<div class=\"card h-100\">" + "<a href=#>";
+            tmp = tmp + "<img style=\"width:355px; height:170px;\" class=\"card-img-top\" src=\""+ fila["fotos"] + "\" alt=></a>";
             tmp = tmp +  "<div class=" + "" + "card-body" +">" + "<h4 class=" + "" + "card-title>";  
             tmp = tmp + "<a href=" +"" + "#" +">" + fila["titulo"] + "</a>" + "</h4>";
             tmp = tmp + "<h5>" + fila["fecha_lanzamiento"] + "</h5>";
-            tmp = tmp + "<p class=" +"" + "card-text" + ">" + fila["resumen"] + "</p>" + "</div>";
+            tmp = tmp + "<p class=" +"" + "card-text" + ">" + fila["nombre"] + "</p>" + "</div>";
             tmp = tmp + "<div class=" + "" + "card-footer" + ">";
-            tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9733; &#9734;</small>" + "</div></div></div>";
+             if(fila["puntuacion"]==0.00){
+                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9734; &#9734; &#9734; &#9734; &#9734; 0/5</small>" + "</div></div></div>";   
+            }else{
+                if(fila["puntuacion"]==1.00){
+                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9734; &#9734; &#9734; &#9734; 1/5</small>" + "</div></div></div>";
+                }
+                else{
+                    if(fila["puntuacion"]==2.00){
+                    tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9734; &#9734; &#9734; 2/5</small>" + "</div></div></div>";
+                    }else{
+                        if(fila["puntuacion"]==3.00){
+                            tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9734; &#9734; 3/5</small>" + "</div></div></div>";
+                        }else{
+                            if(fila["puntuacion"]==4.00){
+                                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9733; &#9734; 4/5</small>" + "</div></div></div>";
+                            }else{
+                                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9733; &#9733; 5/5</small>" + "</div></div></div>";
+                            }
+                        }
+                    }
+                }
+            }
             $("#ajax").append(tmp)
 //            tmp = "<tr><td>" + fila["titulo"] + "</td>";
 //            tmp = tmp + "<td>" + fila["fecha_lanzamiento"] + "</td></tr>";
 //            $("#cuerpoTabla").append(tmp)
-              
-            
         }
     }
-    else{
-        alert("ERROR!!!");
-    }
+    
     
 }
 /*function mostrar(clase){

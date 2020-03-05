@@ -23,9 +23,11 @@ $miSmarty->cache_dir =CACHE_DIR;
 
 
 if($conn->conectar()){
-    $sql = "SELECT * FROM peliculas";
-    $sql .=" ORDER BY fecha_lanzamiento desc";
-    $sql .= " LIMIT 0,6";
+//    $sql = "SELECT * FROM peliculas";
+//    $sql .=" ORDER BY fecha_lanzamiento desc";
+//    $sql .= " LIMIT 0,6";
+      $sql = "SELECT peliculas.fecha_lanzamiento,peliculas.fotos,peliculas.titulo,peliculas.id_genero,generos.id,generos.nombre FROM peliculas,generos  WHERE peliculas.id_genero = generos.id ORDER BY fecha_lanzamiento desc LIMIT 0,6";
+    
     //$sql .= " WHERE help_category_id >= :codigo";
     
     

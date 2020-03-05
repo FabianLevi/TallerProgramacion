@@ -7,7 +7,6 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
-  <script src="js/funciones.js" type="text/javascript"></script>
 
   <title>Shop Homepage - Start Bootstrap Template</title>
 
@@ -41,7 +40,7 @@
             <a class="nav-link" href="registro.php">Registrarse</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            
           </li>
         </ul>
       </div>

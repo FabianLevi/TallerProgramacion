@@ -23,56 +23,6 @@
 <body>
     {include file="encabezado.tpl"}
 
-<<<<<<< Updated upstream
-  <!-- Page Content -->   
-=======
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" onclick="verInicio()" href="#inicio">Iniciar Sesion</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Page Content -->
-   <div class="inicio">
-                <form method="POST" action="procesoUpload.php" id="formularioinicio">
-                    <div class="tabla2"><table>
-                        <tr>
-                            <td><div class="form">Correo</div><br><br></td> <td><input type="text" id="txtCorreo" name="txtCorreo" class="rellenar" placeholder="Ingrese su correo"/><span id="err_txtCorreo"></span><br><br></td>
-                        </tr>
-                        <tr>
-                            <td><div class="form">Contraseña   </div><br><br></td> <td><input type="password" id="txtContra" class="rellenar" placeholder="Ingrese su contraseña"/><span id="err_txtContra"></span><br><br></td>
-                            
-                        </tr>
-                        <tr>
-                            <td colspan="1"> <div class="td2"><input class= "boton" type="button" value="Iniciar Sesión" id="btnInicio"><span id="err_btnInicio"></span></div></td>
-                    </tr>
-                        </table></div>
-                </form>
-            </div>
-      
->>>>>>> Stashed changes
   <div class="container2">
       
 
@@ -84,6 +34,17 @@
         <div class="list-group">
           <a href="#" class="list-group-item">Agregar Pelicula</a>
           <a href="#" class="list-group-item">Aprobar Comentarios</a>
+          <br><br>
+            <input type="text" id="nombre" name="nombre"/>
+            <input type="button" value="BUSCAR" id="buscar">
+            <br>
+            <span id="genero">GENERO:</span> <select id="selGenero" name="selGenero">
+                <option value="Aventuras"> Aventuras </option>
+                <option value="dram"> Drama </option>
+                <option value="com" selected="selected"> Comedia </option>
+            </select>
+            <input type="button" value="BUSCAR" id="buscarGenero">
+     
         </div>
 
       </div>
@@ -231,8 +192,8 @@
     </div>
     <!-- /.row -->
     <div id="btn">
-        <input type="button" value="<" id="btnAnterior">
-        <input type="button" value=">" id="btnSiguiente">
+        <input type="button" value="<" alt='' id="btnAnterior">
+        <input type="button" value=">" alt='' id="btnSiguiente">
     </div>
   </div>
               
