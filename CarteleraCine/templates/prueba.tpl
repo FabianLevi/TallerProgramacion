@@ -32,7 +32,6 @@
 
         <h1 class="my-4">MOVIES PRO</h1>
         <div class="list-group">
-           r:{$admin}:r
           {if $admin eq "1"}
           <a href="agregarPeli.php" class="list-group-item">Agregar Pelicula</a>
           <a href="#" class="list-group-item">Aprobar Comentarios</a>

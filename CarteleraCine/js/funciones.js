@@ -2,7 +2,9 @@ $(document).ready(inicializo);
 
 
 var pagina = 1;
-
+var pagina2 =1;
+var num = 0;
+var num2= 0;
 function inicializo(){
 	//mostrar("container");
         //mostrar ("container2");
@@ -32,13 +34,33 @@ function inicializo(){
         $("#btnSiguiente").click(paginaSiguiente);
         $("#buscar").click(cargoPagina2);
         $("#buscarGenero").click(cargoPagina3);
+        $("#2at").click(paginaAnterior2);
+        $("#2si").click(paginaSiguiente2);
         cargoPagina(1);
+        //cargoPaginaComentarios(1);
+        $('a[href = "poster.php"]').click(cargoPaginaComentarios(1));
 }
+
+
 
 function paginaAnterior(){
     pagina--;
     cargoPagina(pagina);
 }
+
+function paginaAnterior2(){
+    pagina2--;
+    cargoPaginaComentarios(pagina2);
+}
+
+function paginaSiguiente2(){
+    pagina2++;
+    if(pagina2 > num2){
+        pagina2 = 1;
+    }
+    cargoPaginaComentarios(pagina2);
+}
+
 
 function cargoPagina3(){
     let genero = $("#selGenero").val();
@@ -50,6 +72,36 @@ function cargoPagina3(){
        success : procesoResultado,
        
     });
+}
+
+
+function cargoPaginaComentarios(pPagina){
+    let id = $("#comentarioID").val();
+    $.ajax({
+       url : "traigoComentario.php",
+       type : "POST",
+       data : "pagina=" + pPagina + "&id=" + id,
+       dataType : "JSON",
+       success : procesoResultado2,
+       
+    });
+}
+
+function procesoResultado2(datos){
+    let filas, fila, tmp;
+    if(datos["status"]=="OK"){
+        filas = datos["data"];
+        $("#ajaxComentarios").empty();
+        for(pos=0; pos <= filas.length-1; pos++){
+            fila = filas[pos];
+            tmp= "<p>"+ fila["mensaje"]+"</p>";
+            tmp = tmp + "<small class='text-muted'>" + "fechaaa" + "</small>" + "<hr>";
+            $("#ajaxComentarios").append(tmp)
+            num2 =datos["ultima"];
+        }
+    }
+    
+    
 }
 
 
@@ -69,6 +121,9 @@ function cargoPagina2(){
 function paginaSiguiente(){
     //alert("entree");
     pagina++;
+    if(pagina > num){
+        pagina = 1;
+    }
     cargoPagina(pagina);
 }
 
@@ -97,7 +152,7 @@ function procesoResultado(datos){
             tmp= "<div class=\"col-lg-4 col-md-6 mb-4\">" + "\<div class=\"card h-100\">" + "<a href=#>";
             tmp = tmp + "<img style=\"width:355px; height:170px;\" class=\"card-img-top\" src=\""+ fila["fotos"] + "\" alt=></a>";
             tmp = tmp +  "<div class=" + "" + "card-body" +">" + "<h4 class=" + "" + "card-title>";  
-            tmp = tmp + "<a href=" +"" + "poster.php" +">" + fila["titulo"] + "</a>" + "</h4>";
+            tmp = tmp + "<a href=" +"" + "poster.php?id=" + fila["id"] +" >" + fila["titulo"] + "</a>" + "</h4>";
             tmp = tmp + "<h5>" + fila["fecha_lanzamiento"] + "</h5>";
             tmp = tmp + "<p class=" +"" + "card-text" + ">" + fila["nombre"] + "</p>" + "</div>";
             tmp = tmp + "<div class=" + "" + "card-footer" + ">";
@@ -124,6 +179,7 @@ function procesoResultado(datos){
                 }
             }
             $("#ajax").append(tmp)
+            num =datos["ultima"];
 //            tmp = "<tr><td>" + fila["titulo"] + "</td>";
 //            tmp = tmp + "<td>" + fila["fecha_lanzamiento"] + "</td></tr>";
 //            $("#cuerpoTabla").append(tmp)

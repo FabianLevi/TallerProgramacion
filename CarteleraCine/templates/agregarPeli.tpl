@@ -22,7 +22,7 @@
     
     {include file="encabezado.tpl"}
     <br><br>
-    <form method="POST" action="guardarPeli.php" id="formularioagregar">
+    <form method="POST" action="guardarPeli.php" id="formularioagregar" enctype="multipart/form-data">
                     <div class="tabla2"><table>
                         <tr>
                             <td><div class="form">Título</div><br><br></td> <td><input type="text" id="txtTítulo" name="txtTítulo" class="rellenar" placeholder="Ingrese el título"/><span id="err_txtTítulo"></span><br><br></td>
@@ -48,7 +48,7 @@
                         </tr>
                         
                         <tr>
-                            <td colspan="2"> <div class="td2"><input class= "boton" type="button" value="Agregar Película" id="btnAgregar"><span id="err_btnAgregar"></span></div></td>
+                            <td colspan="2"> <div class="td2"><input class= "boton" type="submit" value="Agregar Película" id="btnAgregar"><span id="err_btnAgregar"></span></div></td>
                     </tr>
                         </table></div>
                 </form>
