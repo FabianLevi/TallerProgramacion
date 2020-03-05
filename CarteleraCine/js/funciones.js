@@ -150,7 +150,7 @@ function procesoResultado(datos){
         for(pos=0; pos <= filas.length-1; pos++){
             fila = filas[pos];
             tmp= "<div class=\"col-lg-4 col-md-6 mb-4\">" + "\<div class=\"card h-100\">" + "<a href=#>";
-            tmp = tmp + "<img style=\"width:355px; height:170px;\" class=\"card-img-top\" src=\""+ fila["fotos"] + "\" alt=></a>";
+            tmp = tmp + "<img style=\"width:355px; height:170px;\" class=\"card-img-top\" src=\""+ "imagenes/" + fila["fotos"] + "\" alt=></a>";
             tmp = tmp +  "<div class=" + "" + "card-body" +">" + "<h4 class=" + "" + "card-title>";  
             tmp = tmp + "<a href=" +"" + "poster.php?id=" + fila["id"] +" >" + fila["titulo"] + "</a>" + "</h4>";
             tmp = tmp + "<h5>" + fila["fecha_lanzamiento"] + "</h5>";
