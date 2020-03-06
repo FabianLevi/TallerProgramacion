@@ -8,7 +8,7 @@
   <meta name="author" content="">
   <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
 
-  <title>Shop Homepage - Start Bootstrap Template</title>
+  <title>MOVIES PRO</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
             <a class="nav-link" href="registro.php">Registrarse</a>
           </li>
           <li class="nav-item">
-            
+            <a class="nav-link" href="logOut.php">Log Out</a>
           </li>
         </ul>
       </div>

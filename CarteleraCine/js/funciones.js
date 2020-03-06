@@ -26,13 +26,14 @@ function inicializo(){
         $("#txtElenco").blur(validoNoVacio);
         $("#imgPoster").blur(validoNoVacio);
         $("#txtAlias").blur(validoNoVacio);
+        $("#fechaComen").blur(validoNoVacio);
         $("#txtComentario").blur(validoNoVacio);
         $("#txtPuntuacion").blur(validoPuntuacion);
         $("#btnAgregar").click(validoPelicula);
         $("#btnAgregarCom").click(validoComentario);
         $("#btnAnterior").click(paginaAnterior);
         $("#btnSiguiente").click(paginaSiguiente);
-        $("#buscar").click(cargoPagina2);
+        $("#buscar").click(aplicarFiltro);
         $("#buscarGenero").click(cargoPagina3);
         $("#2at").click(paginaAnterior2);
         $("#2si").click(paginaSiguiente2);
@@ -41,7 +42,9 @@ function inicializo(){
         $('a[href = "poster.php"]').click(cargoPaginaComentarios(1));
 }
 
-
+function aplicarFiltro(){
+    cargoPagina(pagina)
+}
 
 function paginaAnterior(){
     pagina--;
@@ -95,7 +98,7 @@ function procesoResultado2(datos){
         for(pos=0; pos <= filas.length-1; pos++){
             fila = filas[pos];
             tmp= "<p>"+ fila["mensaje"]+"</p>";
-            tmp = tmp + "<small class='text-muted'>" + "fechaaa" + "</small>" + "<hr>";
+            tmp = tmp + "<small class='text-muted'>" + fila["fecha"] + "</small>" + "<hr>";
             $("#ajaxComentarios").append(tmp)
             num2 =datos["ultima"];
         }
@@ -128,10 +131,15 @@ function paginaSiguiente(){
 }
 
 function cargoPagina(numeroPag){
+    var filtro = $("#filtro").val();
+    //alert("pagina " + numeroPag + " filtro " + filtro);
     $.ajax({
        url : "traigoPagina.php",
        type : "POST",
-       data : "pagina=" + numeroPag,
+       data : {
+           pagina: numeroPag,
+           filtro: filtro
+       },
        dataType : "JSON",
        success : procesoResultado,
        
@@ -156,28 +164,29 @@ function procesoResultado(datos){
             tmp = tmp + "<h5>" + fila["fecha_lanzamiento"] + "</h5>";
             tmp = tmp + "<p class=" +"" + "card-text" + ">" + fila["nombre"] + "</p>" + "</div>";
             tmp = tmp + "<div class=" + "" + "card-footer" + ">";
-             if(fila["puntuacion"]==0.00){
-                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9734; &#9734; &#9734; &#9734; &#9734; 0/5</small>" + "</div></div></div>";   
-            }else{
-                if(fila["puntuacion"]==1.00){
-                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9734; &#9734; &#9734; &#9734; 1/5</small>" + "</div></div></div>";
-                }
-                else{
-                    if(fila["puntuacion"]==2.00){
-                    tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9734; &#9734; &#9734; 2/5</small>" + "</div></div></div>";
-                    }else{
-                        if(fila["puntuacion"]==3.00){
-                            tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9734; &#9734; 3/5</small>" + "</div></div></div>";
-                        }else{
-                            if(fila["puntuacion"]==4.00){
-                                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9733; &#9734; 4/5</small>" + "</div></div></div>";
-                            }else{
-                                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9733; &#9733; 5/5</small>" + "</div></div></div>";
-                            }
-                        }
-                    }
-                }
-            }
+            tmp = tmp + "<p>" + fila["puntuacion"] + "</p>";
+//             if(fila["puntuacion"]==0.00){
+//                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9734; &#9734; &#9734; &#9734; &#9734; 0/5</small>" + "</div></div></div>";   
+//            }else{
+//                if(fila["puntuacion"]==1.00){
+//                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9734; &#9734; &#9734; &#9734; 1/5</small>" + "</div></div></div>";
+//                }
+//                else{
+//                    if(fila["puntuacion"]==2.00){
+//                    tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9734; &#9734; &#9734; 2/5</small>" + "</div></div></div>";
+//                    }else{
+//                        if(fila["puntuacion"]==3.00){
+//                            tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9734; &#9734; 3/5</small>" + "</div></div></div>";
+//                        }else{
+//                            if(fila["puntuacion"]==4.00){
+//                                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9733; &#9734; 4/5</small>" + "</div></div></div>";
+//                            }else{
+//                                tmp = tmp + "<small class=" + "" + "text-muted" + ">&#9733; &#9733; &#9733; &#9733; &#9733; 5/5</small>" + "</div></div></div>";
+//                            }
+//                        }
+//                    }
+//                }
+//            }
             $("#ajax").append(tmp)
             num =datos["ultima"];
 //            tmp = "<tr><td>" + fila["titulo"] + "</td>";
@@ -227,10 +236,10 @@ function verRegistro(){
 }*/
 
 function validoComentario(){
-    let alias = $("#txtAlias").val();
+    let fecha = $("#fechaComen").val();
     let puntuacion = $("#txtPuntuacion").val();
     let comentario = $("#txtComentario").val();
-     if(!esVacio(alias) && !esVacio(comentario) && esPuntuacion(puntuacion)){
+     if(!esVacio(fecha) && !esVacio(comentario) && esPuntuacion(puntuacion)){
         $("#err_btnAgregarCom").html("");
         $("#formulariocomentario").submit();
     }else{

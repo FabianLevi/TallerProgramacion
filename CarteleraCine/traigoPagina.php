@@ -3,7 +3,8 @@
 require_once("conexionBD/class.Conexion.BD.php");
 require_once("tmp/configs/configuracion.php");
 $pagina = (int)$_POST["pagina"];
-if($pagina == 0){
+$filtro = $_POST["filtro"];
+if($pagina <= 0){
     $pagina = 1;
 }
 
@@ -15,6 +16,9 @@ $respuesta = array("status"=>"OK",
 $conn->conectar();
 if($conn){
     $sql = "SELECT COUNT(*) as cantidad FROM peliculas";
+    if($filtro!=""){
+        $sql .= " WHERE titulo LIKE '%" . $filtro . "%'";
+    }
     $parametros = array(); 
     
     //Ejecuto la consulta con los parámetros
@@ -25,12 +29,17 @@ if($conn){
 }
 
 $conn->conectar();
-    $sql = "SELECT peliculas.id,peliculas.fecha_lanzamiento,peliculas.fotos,peliculas.titulo,peliculas.id_genero,generos.nombre "
-            . "FROM peliculas,generos  WHERE peliculas.id_genero = generos.id ORDER BY fecha_lanzamiento desc LIMIT :inicio,6";
+$parametros = array();
+$parametros[] = array("inicio",($pagina-1)*6,"int",0);
+    $sql = "SELECT peliculas.puntuacion,peliculas.id,peliculas.fecha_lanzamiento,peliculas.fotos,peliculas.titulo,peliculas.id_genero,generos.nombre "
+            . "FROM peliculas,generos  WHERE peliculas.id_genero = generos.id";
     
-    
-    $parametros = array();
-    $parametros[0] = array("inicio",($pagina-1)*6,"int",0);
+    if($filtro!=""){
+        $sql .= " AND titulo LIKE :filtro" ;
+        $parametros[] = array("filtro","%" . $filtro . "%");
+    }  
+    $sql.=" ORDER BY fecha_lanzamiento desc LIMIT :inicio,6";
+
     
    
     if($conn->consulta($sql,$parametros)){

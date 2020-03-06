@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once('smarty/libs/Smarty.class.php');
 require_once("conexionBD/class.Conexion.BD.php");
@@ -25,7 +26,7 @@ $miSmarty->cache_dir =CACHE_DIR;
 $conn = new ConexionBD(MOTOR, SERVIDOR, BASE, USUARIO, CLAVE);
 if ($conn->conectar()) {
 
-$sql = "SELECT peliculas.id,peliculas.youtube_trailer,peliculas.director,peliculas.resumen,peliculas.fecha_lanzamiento,peliculas.fotos,peliculas.titulo,peliculas.id_genero,generos.id,generos.nombre FROM peliculas,generos WHERE peliculas.id = :id AND generos.id=:id";
+$sql = "SELECT peliculas.puntuacion,peliculas.id,peliculas.youtube_trailer,peliculas.director,peliculas.resumen,peliculas.fecha_lanzamiento,peliculas.fotos,peliculas.titulo,peliculas.id_genero,generos.id,generos.nombre FROM peliculas,generos WHERE peliculas.id = :id AND generos.id=:id";
 $conn->consulta($sql,array(
         array("id", $id, "string"),
     ));
@@ -52,6 +53,10 @@ $conn->consulta($sql3,array(
 }
 $listado3 = $conn->restantesRegistros();
 $miSmarty->assign("elenco", $listado3);
+
+if (isset( $_SESSION["usuarioLogueado"])){
+    $miSmarty->assign("usuario", true);
+}
 
 $miSmarty->display("poster.tpl");
 

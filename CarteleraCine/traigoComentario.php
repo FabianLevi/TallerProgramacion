@@ -10,7 +10,7 @@ define('CONFIG_DIR', $_SERVER['DOCUMENT_ROOT'] . './CarteleraCine/tmp/config/');
 define('CACHE_DIR', $_SERVER['DOCUMENT_ROOT'] . './CarteleraCine/tmp/cache/');
 $id = $_POST["id"];
 $pagina = (int)$_POST["pagina"];
-if($pagina == 0){
+if($pagina <= 0){
     $pagina = 1;
 }
 $conn = new ConexionBD(MOTOR, SERVIDOR, BASE, USUARIO, CLAVE);
@@ -32,7 +32,7 @@ if($conn){
 
 if($conn->conectar()){
     
-    $sql2 = "SELECT comentarios.mensaje FROM comentarios WHERE comentarios.id_pelicula = :id AND comentarios.estado='APROBADO' LIMIT :inicio,6";
+    $sql2 = "SELECT comentarios.mensaje,comentarios.fecha FROM comentarios WHERE comentarios.id_pelicula = :id AND comentarios.estado='APROBADO' ORDER BY fecha desc LIMIT :inicio,6";
     
     $parametros = array();
     $parametros[0]=array("id", $id, "int");

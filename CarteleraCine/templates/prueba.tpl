@@ -34,16 +34,22 @@
         <div class="list-group">
           {if $admin eq "1"}
           <a href="agregarPeli.php" class="list-group-item">Agregar Pelicula</a>
-          <a href="#" class="list-group-item">Aprobar Comentarios</a>
+          <a href="aprobarComen.php" class="list-group-item">Aprobar Comentarios</a>
           <br><br>
            {/if} 
-            <input type="text" id="nombre" name="nombre"/>
+            <input type="text" id="filtro" name="nombre"/>
             <input type="button" value="BUSCAR" id="buscar">
             <br>
             <span id="genero">GENERO:</span> <select id="selGenero" name="selGenero">
                 <option value="Aventuras"> Aventuras </option>
-                <option value="dram"> Drama </option>
-                <option value="com" selected="selected"> Comedia </option>
+                <option value="Acción"> Accion </option>
+                <option value="Drama"> Drama </option>
+                <option value="Musicales"> Musicales </option>
+                <option value="Terror"> Terror </option>
+                <option value="Ciencia Ficción"> Ciencia Ficción </option>
+                <option value="Terror"> Terror </option>
+                <option value="Suspenso"> Suspenso </option>
+                <option value="Infantiles" selected="Infantiles"> Infantiles </option>
             </select>
             <input type="button" value="BUSCAR" id="buscarGenero">
      

@@ -42,7 +42,7 @@
       <div class="col-lg-9">
 
         <div class="card mt-4">
-          <img class="card-img-top img-fluid" src="{$pelicula.fotos}" alt="">
+          <img class="card-img-top img-fluid" src= "imagenes/{$pelicula.fotos}" alt="">
           <div class="card-body">
             <h3 class="card-title">{$pelicula.titulo}</h3>
             <h4>{$pelicula.fecha_lanzamiento}</h4>
@@ -51,10 +51,10 @@
             {foreach from=$elenco item=fila}
             <p class="card-text">ELENCO: {$fila["nombre"]}</p>
             {/foreach}
-            <a href=“{$pelicula.youtube_trailer}”>Mirar trailer</a>
+            <iframe width="785" height="315" src="{$pelicula.youtube_trailer}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <br>
             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-            4.0 stars
+            {$pelicula.puntuacion}
           </div>
         </div>
         <!-- /.card -->
@@ -67,7 +67,9 @@
           </div>
         </div>
         <!-- /.card -->
-
+            {if $usuario}
+            <a href="ingresarComen.php?id={$pelicula.id}" class="btn btn-success">Leave a Review</a>
+            {/if}
       </div>
       <!-- /.col-lg-9 -->
 
