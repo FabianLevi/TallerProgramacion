@@ -21,7 +21,9 @@ $miSmarty->compile_dir = COMPILER_DIR;
 $miSmarty->config_dir = CONFIG_DIR;
 $miSmarty->cache_dir =CACHE_DIR;
 
-
+if (isset($_GET["err"])) {
+    $miSmarty->assign("error", true);
+ }
 $miSmarty->display("registro.tpl");
 
 ?>

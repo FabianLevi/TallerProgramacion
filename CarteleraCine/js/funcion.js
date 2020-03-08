@@ -18,8 +18,8 @@ function inicializo(){
         $("#txtContra").blur(validoContra);
         $("#btnInicio").click(validoInicio);
         $("#btnRegistro").click(validoRegistro);
-        $("#txtTítulo").blur(validoNoVacio);
-        $("#txtGénero").blur(validoNoVacio);
+        $("#txtTitulo").blur(validoNoVacio);
+        $("#txtGenero").blur(validoNoVacio);
         $("#txtFecha").blur(validoNoVacio);
         $("#txtResumen").blur(validoNoVacio);
         $("#txtDirector").blur(validoNoVacio);
@@ -158,7 +158,7 @@ function procesoResultado(datos){
         for(pos=0; pos <= filas.length-1; pos++){
             fila = filas[pos];
             tmp= "<div class=\"col-lg-4 col-md-6 mb-4\">" + "\<div class=\"card h-100\">" + "<a href=#>";
-            tmp = tmp + "<img style=\"width:355px; height:170px;\" class=\"card-img-top\" src=\""+ "imagenes/" + fila["fotos"] + "\" alt=></a>";
+            tmp = tmp + "<img style=\"width:372px; height:170px;\" class=\"card-img-top\" src=\""+ "imagenes/" + fila["fotos"] + "\" alt=></a>";
             tmp = tmp +  "<div class=" + "" + "card-body" +">" + "<h4 class=" + "" + "card-title>";  
             tmp = tmp + "<a href=" +"" + "poster.php?id=" + fila["id"] +" >" + fila["titulo"] + "</a>" + "</h4>";
             tmp = tmp + "<h5>" + fila["fecha_lanzamiento"] + "</h5>";
@@ -248,8 +248,8 @@ function validoComentario(){
 }
 
 function validoPelicula(){
-    let titulo = $("#txtTítulo").val();
-    let genero = $("#txtGénero").val();
+    let titulo = $("#txtTitulo").val();
+    let genero = $("#txtGenero").val();
     let resumen = $("#txtResumen").val();
     let director = $("#txtDirector").val();
     let elenco = $("#txtElenco").val();
@@ -381,9 +381,3 @@ function esVacio(cadena){
     }
     return retorno;
 }
-
-
-
-
-
-

@@ -12,3 +12,5 @@ define('CACHE_DIR', $_SERVER['DOCUMENT_ROOT'] . './CarteleraCine/tmp/cache/');
 session_start();
  $_SESSION["usuarioLogueado"]= NULL;
  header('location:index.php');
+
+ ?>

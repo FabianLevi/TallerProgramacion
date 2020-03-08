@@ -8,7 +8,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
-  <script src="js/funciones.js" type="text/javascript"></script>
+  <script src="js/funcion.js" type="text/javascript"></script>
+
 
   <title>Shop Homepage - Start Bootstrap Template</title>
 
@@ -16,7 +17,9 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/shop-homepage.css" rel="stylesheet">
+  <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
+  
+  
 
 </head>
 
@@ -43,11 +46,11 @@
             <span id="genero">GENERO:</span> <select id="selGenero" name="selGenero">
                 <option value="Aventuras"> Aventuras </option>
                 <option value="Acción"> Accion </option>
+                <option value="Comedia"> Comedia </option>
                 <option value="Drama"> Drama </option>
                 <option value="Musicales"> Musicales </option>
                 <option value="Terror"> Terror </option>
                 <option value="Ciencia Ficción"> Ciencia Ficción </option>
-                <option value="Terror"> Terror </option>
                 <option value="Suspenso"> Suspenso </option>
                 <option value="Infantiles" selected="Infantiles"> Infantiles </option>
             </select>
@@ -94,116 +97,22 @@
           
 
         <div class="row" id ="ajax">
-<!--
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{$datos[0]["fotos"]}" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="poster.php">{$datos[0]["titulo"]}</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{$datos[1]["fotos"]}" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">{$datos[1]["titulo"]}</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{$datos[2]["fotos"]}" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">{$datos[2]["titulo"]}</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{$datos[3]["fotos"]}" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">{$datos[3]["titulo"]}</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{$datos[4]["fotos"]}" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">{$datos[4]["titulo"]}</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="{$datos[5]["fotos"]}" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">{$datos[5]["titulo"]}</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <!-- /.row -->
--->
       </div>
       <!-- /.col-lg-9 -->
 
     </div>
-    <!-- /.row -->
-    <div id="btn">
-        <input type="button" value="<" alt='' id="btnAnterior">
-        <input type="button" value=">" alt='' id="btnSiguiente">
     </div>
-  </div>
+    <!-- /.row -->
+    <div class="btn">
+        <table class="tabla2">
+            <tr>
+                <td class="ancho"></td>
+                <td class="ancho"></td>
+                <td class="ancho"> <input type="button" value="<" alt='' id="btnAnterior"></td>
+                <td class="ancho"><input type="button" value=">" alt='' id="btnSiguiente"></td>
+            </tr>
+        </table>
+    </div>
               
   <!-- /.container -->
 
@@ -211,9 +120,9 @@
   <div class="container3">
   <footer class="py-5 bg-dark">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  </footer>
     </div>
     <!-- /.container -->
-  </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

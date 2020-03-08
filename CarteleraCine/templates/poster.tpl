@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
-  <script src="js/funciones.js" type="text/javascript"></script>
+  <script src="js/funcion.js" type="text/javascript"></script>
 
   <title>Shop Item - Start Bootstrap Template</title>
 
@@ -16,7 +16,7 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/shop-item.css" rel="stylesheet">
+  <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -31,11 +31,7 @@
 
       <div class="col-lg-3">
         <h1 class="my-4">{$pelicula.titulo}</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item active">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
-        </div>
+       
       </div>
       <!-- /.col-lg-3 -->
 
@@ -68,17 +64,24 @@
         </div>
         <!-- /.card -->
             {if $usuario}
-            <a href="ingresarComen.php?id={$pelicula.id}" class="btn btn-success">Leave a Review</a>
+            <a href="ingresarComen.php?id={$pelicula.id}" class="btn btn-success">Escribe un comentario</a>
             {/if}
       </div>
       <!-- /.col-lg-9 -->
 
     </div>
   <input type="hidden" id="comentarioID" value="{$pelicula.id}"/>
-  
-        <input type="button" value="<" alt='' id="2at">
-        <input type="button" value=">" alt='' id="2si">
+  <div class="btn">
+  <table class="tabla2">
+            <tr>
+                <td class="ancho"> <input type="button" value="<" alt='' id="2at"></td>
+                <td class="ancho"><input type="button" value=">" alt='' id="2si"></td>
+            </tr>
+  </table>
+  </div>
     
+  
+  
   </div>
   <!-- /.container -->
 

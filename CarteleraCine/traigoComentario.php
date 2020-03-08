@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("conexionBD/class.Conexion.BD.php");
 require_once("tmp/configs/configuracion.php");
 
@@ -24,10 +24,17 @@ if($conn){
     $parametros = array(); 
     
     //Ejecuto la consulta con los parámetros
-    $conn->consulta($sql, $parametros);   
+    if ($conn->consulta($sql, $parametros)){  
     $fila = $conn->siguienteRegistro();
 
     $ultima = ceil($fila['cantidad']/CANTXPAG);
+    }else{
+    $_SESSION["mensaje"]="Error de Consulta";
+    header('location:errores.php');
+    }
+}else{
+    $_SESSION["mensaje"]="Error de Conexión";
+    header('location:errores.php');
 }
 
 if($conn->conectar()){
@@ -37,11 +44,18 @@ if($conn->conectar()){
     $parametros = array();
     $parametros[0]=array("id", $id, "int");
     $parametros[1] = array("inicio",($pagina-1)*6,"int",0);
-    $conn->consulta($sql2,$parametros);
+   if ($conn->consulta($sql2,$parametros)){
     $listado = $conn->restantesRegistros();
     $respuesta["status"]="OK";
     $respuesta["data"]= $listado;
     $respuesta["ultima"]= $ultima;
+   }else{
+       $_SESSION["mensaje"]="Error de Consulta";
+    header('location:errores.php');
+   }
+}else{
+    $_SESSION["mensaje"]="Error de Conexión";
+    header('location:errores.php');
 }
    
 echo json_encode($respuesta);

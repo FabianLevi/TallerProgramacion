@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 require_once('smarty/libs/Smarty.class.php');
@@ -11,28 +12,36 @@ $miSmarty = new Smarty();
 $conn = new ConexionBD(MOTOR, SERVIDOR, BASE, USUARIO, CLAVE);
 
 
-define('TEMPLATE_DIR', $_SERVER['DOCUMENT_ROOT'].'./CarteleraCine/templates/');
-define('COMPILER_DIR', $_SERVER['DOCUMENT_ROOT'].'./CarteleraCine/tmp/templates_c/');
-define('CONFIG_DIR', $_SERVER['DOCUMENT_ROOT'].'./CarteleraCine/tmp/config/');
-define('CACHE_DIR', $_SERVER['DOCUMENT_ROOT'].'./CarteleraCine/tmp/cache/');
+define('TEMPLATE_DIR', $_SERVER['DOCUMENT_ROOT'] . './CarteleraCine/templates/');
+define('COMPILER_DIR', $_SERVER['DOCUMENT_ROOT'] . './CarteleraCine/tmp/templates_c/');
+define('CONFIG_DIR', $_SERVER['DOCUMENT_ROOT'] . './CarteleraCine/tmp/config/');
+define('CACHE_DIR', $_SERVER['DOCUMENT_ROOT'] . './CarteleraCine/tmp/cache/');
 
 
 $miSmarty->template_dir = TEMPLATE_DIR;
 $miSmarty->compile_dir = COMPILER_DIR;
 $miSmarty->config_dir = CONFIG_DIR;
-$miSmarty->cache_dir =CACHE_DIR;
+$miSmarty->cache_dir = CACHE_DIR;
 
 
 $conn = new ConexionBD(MOTOR, SERVIDOR, BASE, USUARIO, CLAVE);
 if ($conn->conectar()) {
 
-$sql = "SELECT peliculas.puntuacion,peliculas.id,peliculas.youtube_trailer,peliculas.director,peliculas.resumen,peliculas.fecha_lanzamiento,peliculas.fotos,peliculas.titulo,peliculas.id_genero,generos.id,generos.nombre FROM peliculas,generos WHERE peliculas.id = :id AND generos.id=:id";
-$conn->consulta($sql,array(
+    $sql = "SELECT peliculas.puntuacion,peliculas.id,peliculas.youtube_trailer,peliculas.director,peliculas.resumen,peliculas.fecha_lanzamiento,peliculas.fotos,peliculas.titulo,peliculas.id_genero,generos.id,generos.nombre FROM peliculas,generos WHERE peliculas.id=:id";
+    if ($conn->consulta($sql, array(
         array("id", $id, "string"),
-    ));
+    ))){
+    $listado = $conn->siguienteRegistro();
+    $miSmarty->assign("pelicula", $listado); 
+    }else{
+    $_SESSION["mensaje"]="Error de Consulta";
+    header('location:errores.php');
+    }
+}else{
+    $_SESSION["mensaje"]="Error de Conexión";
+    header('location:errores.php');
 }
-$listado = $conn->siguienteRegistro();
-$miSmarty->assign("pelicula", $listado);
+
 //$miSmarty->assign("idPelicula",$id);
 //if ($conn->conectar()) {
 //
@@ -46,18 +55,25 @@ $miSmarty->assign("pelicula", $listado);
 
 if ($conn->conectar()) {
 
-$sql3 = "SELECT elencos.nombre FROM elencos WHERE elencos.id_pelicula = :id";
-$conn->consulta($sql3,array(
-        array("id", $id, "string"),
-    ));
-}
-$listado3 = $conn->restantesRegistros();
-$miSmarty->assign("elenco", $listado3);
+    $sql3 = "SELECT elencos.nombre FROM elencos WHERE elencos.id_pelicula = :id";
+    if ($conn->consulta($sql3, array(
+                array("id", $id, "string"),
+            ))) {
 
-if (isset( $_SESSION["usuarioLogueado"])){
+        $listado3 = $conn->restantesRegistros();
+        $miSmarty->assign("elenco", $listado3);
+    } else {
+        $_SESSION["mensaje"]="Error de Consulta";
+        header('location:errores.php');
+    }
+} else {
+   $_SESSION["mensaje"]="Error de Conexión";
+        header('location:errores.php');
+}
+
+if (isset($_SESSION["usuarioLogueado"])) {
     $miSmarty->assign("usuario", true);
 }
 
 $miSmarty->display("poster.tpl");
-
 ?>

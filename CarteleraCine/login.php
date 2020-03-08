@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("conexionBD/class.Conexion.BD.php");
 require_once("tmp/configs/configuracion.php");
 
@@ -27,13 +27,20 @@ function login($correo, $contra) {
     if ($conn->conectar()) {
         $sql = "SELECT * FROM usuarios";
         $sql .= " WHERE email=:email AND password=md5(:password)";
-        $conn->consulta($sql,array(
-        array("email", $correo, 'string'),
-        array("password", $contra, 'string')
-    ));
-        if ($conn->cantidadRegistros() > 0) {
-            return $conn->siguienteRegistro();
+        if ($conn->consulta($sql, array(
+                    array("email", $correo, 'string'),
+                    array("password", $contra, 'string')
+                ))) {
+            if ($conn->cantidadRegistros() > 0) {
+                return $conn->siguienteRegistro();
+            }
+        } else {
+            $_SESSION["mensaje"]="Error de Consulta";
+        header('location:errores.php');
         }
+    } else {
+        $_SESSION["mensaje"]="Error de Conexión";
+        header('location:errores.php');
     }
     return NULL;
 }

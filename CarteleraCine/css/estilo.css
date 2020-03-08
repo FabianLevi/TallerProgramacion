@@ -6,16 +6,22 @@
 body {
   padding-top: 56px;
 }
+.cuerpo{
+    background-color: #999999;
+}
 .tabla2{
      margin-top:10px;
      margin-left:650px;
+}
+.ancho{
+    width: 29%;
 }
 .btn{
     justify-content: center;
     align-items: center;
 }
 #btnAnterior{
-     justify-content: center;
+    justify-content: center;
     align-items: center;
 }
 #btnSiguiente{
@@ -135,6 +141,12 @@ body {
 }
 
 #err_txtAlias{
+    color: red;
+    font-family: "Arial";
+    font-size: 13px;
+}
+
+#err_fechaComen{
     color: red;
     font-family: "Arial";
     font-size: 13px;

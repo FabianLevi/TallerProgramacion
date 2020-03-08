@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("conexionBD/class.Conexion.BD.php");
 require_once("tmp/configs/configuracion.php");
 $pagina = (int)$_POST["pagina"];
@@ -22,13 +22,20 @@ if($conn){
     $parametros = array(); 
     
     //Ejecuto la consulta con los parámetros
-    $conn->consulta($sql, $parametros);   
+    if ($conn->consulta($sql, $parametros)){   
     $fila = $conn->siguienteRegistro();
 
     $ultima = ceil($fila['cantidad']/CANTXPAG);
+    }else{
+        $_SESSION["mensaje"]="Error de Consulta";
+    header('location:errores.php');
+    }
+}else{
+    $_SESSION["mensaje"]="Error de Conexión";
+    header('location:errores.php');
 }
 
-$conn->conectar();
+if ($conn->conectar()){
 $parametros = array();
 $parametros[] = array("inicio",($pagina-1)*6,"int",0);
     $sql = "SELECT peliculas.puntuacion,peliculas.id,peliculas.fecha_lanzamiento,peliculas.fotos,peliculas.titulo,peliculas.id_genero,generos.nombre "
@@ -53,7 +60,10 @@ $parametros[] = array("inicio",($pagina-1)*6,"int",0);
     else{
         $respuesta = array("status"=>"ERROR");
     }
-
+}else{
+    $_SESSION["mensaje"]="Error de Conexión";
+    header('location:errores.php');
+}
 
 
 echo json_encode($respuesta);

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("conexionBD/class.Conexion.BD.php");
 require_once("tmp/configs/configuracion.php");
 
@@ -22,7 +22,12 @@ if($conn->conectar()){
         
      }
      else{
-         //error!!!
-     }
+         $_SESSION["mensaje"]="Error de Consulta";
+    header('location:errores.php');
+    }
+}else{
+    $_SESSION["mensaje"]="Error de Conexión";
+    header('location:errores.php');
 }
+
 
